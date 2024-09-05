@@ -4,7 +4,11 @@ import axios from "../services/axios";
 export const fetchCompanies = createAsyncThunk(
   "companies/fetchCompanies",
   async () => {
-    const response = await axios.get("/companies");
+    const response = await axios.get("/companies/list", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     return response.data;
   }
 );

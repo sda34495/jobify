@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../services/axios";
 
@@ -10,13 +10,18 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/login", { email, password });
+      const response = await axios.post("/auth/login", { email, password });
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
     } catch (error) {
       console.error("Login failed", error);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) navigate("/dashboard");
+  }, []);
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex justify-center items-center">
