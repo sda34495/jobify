@@ -20,13 +20,7 @@ app.use("/api/jobs", jobRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-async function createUser() {
-  const user = await User.create({
-    email: "admin@jobify.com",
-  });
-  password: "Jobify_Admin",
-  await user.save();
-}
+
 // createUser()
 
 mongoose
