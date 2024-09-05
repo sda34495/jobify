@@ -54,12 +54,9 @@ export const addJob = async (req, res) => {
   }
 };
 export const getJobs = async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
+  // const { page = 1, limit = 10 } = req.query;
   try {
-    const jobs = await Job.find({ active: true })
-      .populate("company", "name")
-      .skip((page - 1) * limit)
-      .limit(parseInt(limit));
+    const jobs = await Job.find({ active: true }).populate("company", "name");
     return res.json({ status: 200, data: jobs });
   } catch (err) {
     res.status(500).json({ error: err.message });

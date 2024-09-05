@@ -42,11 +42,11 @@ export const addCompany = async (req, res) => {
 };
 
 export const getCompanies = async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
+  // const { page = 1, limit = 10 } = req.query;
   try {
-    const companies = await Company.find()
-      .skip((page - 1) * limit)
-      .limit(parseInt(limit));
+    const companies = await Company.find({ active: true })
+      // .skip((page - 1) * limit)
+      // .limit(parseInt(limit));
     res.json(companies);
   } catch (err) {
     res.status(500).json({ error: err.message });

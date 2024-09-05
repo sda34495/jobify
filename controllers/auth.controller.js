@@ -16,9 +16,7 @@ export const adminLogin = async (req, res) => {
     if (!isMatch)
       return res.status(400).json({ message: "Invalid Email or Password" });
 
-    const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET);
     res.json({ token });
   } catch (err) {
     res.status(500).json({ error: err.message });

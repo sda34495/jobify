@@ -14,6 +14,6 @@ router.post("/add", authMiddleware, addCompany);
 router.get("/list", authMiddleware, getCompanies);
 router.put("/update/:companyId", authMiddleware, updateCompany);
 router.get("/:id", authMiddleware, getCompanyById);
-router.delete("/:id", authMiddleware, deleteCompany);
+router.delete("/delete/:id", authMiddleware, deleteCompany);
 
 export default router;
