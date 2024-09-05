@@ -1,4 +1,4 @@
-import Admin from "../models/Admin.js";
+import Admin from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -6,9 +6,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const adminLogin = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   try {
-    const admin = await Admin.findOne({ username });
+    const admin = await Admin.findOne({ email });
     if (!admin)
       return res.status(400).json({ message: "Invalid Email or Password." });
 
