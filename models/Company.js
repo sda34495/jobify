@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const CompanySchema = new mongoose.Schema(
   {
@@ -30,31 +30,42 @@ const CompanySchema = new mongoose.Schema(
     },
     companyType: {
       type: String,
-      enum: ['Private', 'Public', 'Government', 'Non-profit'],
+      enum: ["Private", "Public", "Government", "Non-profit"],
       required: true,
     },
     founded: {
       type: Date,
     },
     industry: {
-      type: String, 
-      enum: ['Technology', 'Finance', 'Healthcare', 'Education', 'Manufacturing', 'Other'],
+      type: String,
+      enum: [
+        "Technology",
+        "Finance",
+        "Healthcare",
+        "Education",
+        "Manufacturing",
+        "Other",
+      ],
       required: true,
     },
     revenue: {
-      type: Number, 
+      type: Number,
       min: 0,
     },
     website: {
       type: String,
       match: [
         /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/,
-        'Please enter a valid website URL',
+        "Please enter a valid website URL",
       ],
     },
     culture: {
-      type: String, 
+      type: String,
       maxlength: 500,
+    },
+    active: {
+      type: Boolean,
+      default: true,
     },
   },
   {
@@ -62,4 +73,4 @@ const CompanySchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model('Company', CompanySchema);
+export default mongoose.model("Company", CompanySchema);
